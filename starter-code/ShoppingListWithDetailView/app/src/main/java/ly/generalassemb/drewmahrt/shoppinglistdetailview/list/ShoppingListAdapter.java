@@ -1,7 +1,5 @@
-package ly.generalassemb.drewmahrt.shoppinglistdetailview;
+package ly.generalassemb.drewmahrt.shoppinglistdetailview.list;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +7,23 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import ly.generalassemb.drewmahrt.shoppinglistdetailview.data.ShoppingItem;
+
 /**
  * Created by drewmahrt on 10/21/16.
  */
 
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingItemViewHolder> {
     private List<ShoppingItem> mShoppingItems;
+    private OnItemSelectedListener mOnItemSelectedListener;
 
-    public ShoppingListAdapter(List<ShoppingItem> shoppingItems) {
+    public interface OnItemSelectedListener {
+        void onItemSelected(int itemId);
+    }
+
+    public ShoppingListAdapter(List<ShoppingItem> shoppingItems, OnItemSelectedListener listener) {
         mShoppingItems = shoppingItems;
+        mOnItemSelectedListener = listener;
     }
 
     @Override
@@ -26,7 +32,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingItemViewHo
     }
 
     @Override
-    public void onBindViewHolder(final ShoppingItemViewHolder holder, int position) {
+    public void onBindViewHolder(final ShoppingItemViewHolder holder, final int position) {
 
         final ShoppingItem currentItem = mShoppingItems.get(position);
 
@@ -36,17 +42,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingItemViewHo
         holder.mNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Get a reference to the MainActivity as a Context
-                Context mainActivity = holder.mNameTextView.getContext();
-
-                // Create the intent
-                Intent intent = new Intent(mainActivity, DetailActivity.class);
-
-                // Add the ID as an extra
-                intent.putExtra(DetailActivity.ITEM_ID_KEY, currentItem.getId());
-
-                // Start the detail activity
-                mainActivity.startActivity(intent);
+                mOnItemSelectedListener.onItemSelected(currentItem.getId());
             }
         });
     }

@@ -1,4 +1,4 @@
-package ly.generalassemb.drewmahrt.shoppinglistdetailview;
+package ly.generalassemb.drewmahrt.shoppinglistdetailview.data;
 
 /**
  * Created by drewmahrt on 10/21/16.

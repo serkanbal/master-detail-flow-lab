@@ -1,4 +1,4 @@
-package ly.generalassemb.drewmahrt.shoppinglistdetailview;
+package ly.generalassemb.drewmahrt.shoppinglistdetailview.data;
 
 import android.content.ContentValues;
 import android.content.Context;

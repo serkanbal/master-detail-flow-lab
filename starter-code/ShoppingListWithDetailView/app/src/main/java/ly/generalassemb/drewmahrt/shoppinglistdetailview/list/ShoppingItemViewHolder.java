@@ -1,4 +1,4 @@
-package ly.generalassemb.drewmahrt.shoppinglistdetailview;
+package ly.generalassemb.drewmahrt.shoppinglistdetailview.list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
